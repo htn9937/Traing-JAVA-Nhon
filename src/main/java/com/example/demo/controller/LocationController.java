@@ -1,7 +1,9 @@
 package com.example.demo.controller;
 
+import java.io.FileNotFoundException;
 import java.util.List;
 import java.util.UUID;
+import java.util.logging.Logger;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
@@ -19,15 +21,22 @@ import org.springframework.web.util.UriComponentsBuilder;
 import com.example.demo.model.Location;
 import com.example.demo.service.ILocationService;
 
+import javassist.NotFoundException;
+
 @RestController
 public class LocationController {
-	
+	private final static Logger LOGGER = Logger.getLogger(LocationController.class.getName());
 	@Autowired
 	ILocationService locationService;
 	
 	@GetMapping("location/{id}")
-	public ResponseEntity<Location> getLocationById(@PathVariable("id") UUID id){
+	public ResponseEntity<Location> getLocationById(@PathVariable("id") UUID id) throws Exception{
 			Location location  = locationService.getLocationById(id);
+			if(location!=null) {
+				LOGGER.info("Logging an INFO-level message");
+				throw new NotFoundException("LOCATION NOT FOUND");
+			}
+			LOGGER.info("Logging an INFO-level message");
 			return new ResponseEntity<Location>(location, HttpStatus.OK);
 	}
 	

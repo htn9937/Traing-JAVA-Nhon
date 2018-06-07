@@ -3,6 +3,7 @@ package com.example.demo.service;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -59,7 +60,8 @@ public class LocationService implements ILocationService{
 	
 	@Override
 	public synchronized boolean addLocation(Location location) { 
-		if (repo.findById(location.getLocation_id()).get()!=null) {
+		Optional<Location> lo =  repo.findById(location.getLocation_id());
+		if (lo.isPresent()) {
 			return false;
 			}
 		else {
