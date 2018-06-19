@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration>
+  <Appenders>
+    <!-- Console Appender -->
+    <Console name="Console" target="SYSTEM_OUT">
+      <PatternLayout pattern="%-5level %d{yyyy-MMM-dd HH:mm:ss a} [%t]  %logger{36} - %msg%n" />
+    </Console>
+    <!-- File Appender -->
+    <File name="File" fileName="d:/app.log">
+      <PatternLayout pattern="%-5level %d{yyyy-MMM-dd HH:mm:ss a} [%t]  %logger{36} - %msg%n" />
+    </File>
+    
+    <!-- File Appender -->
+    <File name="File2" fileName="d:/controller-service.log">
+      <PatternLayout pattern="%-5level %d{yyyy-MMM-dd HH:mm:ss a} [%t]  %logger{36} - %msg%n" />
+    </File>
+    
+  </Appenders>
+
+  <Loggers>
+    <!-- Log everything in controller package -->
+    <Logger name="com.example.demo.controller" level="debug" additivity="false">
+      <AppenderRef ref="Console" />
+      <AppenderRef ref="File2" />
+    </Logger>
+    
+    <!-- Log everything in service package -->
+    <Logger name="mylog" level="debug" additivity="false">
+      <AppenderRef ref="Console" />
+      <AppenderRef ref="File2" />
+    </Logger>
+    <!-- Log everything in service package -->
+    <Logger name="com.example.demo.service.impl" level="debug" additivity="false">
+      <AppenderRef ref="Console" />
+      <AppenderRef ref="File2" />
+    </Logger>
+    <!-- Log everything in Spring Boot -->
+    <Logger name="org.springframework.boot" level="info" additivity="false">
+      <AppenderRef ref="Console" />
+      <AppenderRef ref="File" />
+    </Logger>
+
+    <!-- Log everything in Spring Core -->
+    <Logger name="org.springframework.core" level="info" additivity="false">
+      <AppenderRef ref="Console" />
+      <AppenderRef ref="File" />
+    </Logger>
+
+    <Root level="error">
+      <AppenderRef ref="Console" />
+      <AppenderRef ref="File" />
+    </Root>
+    
+  </Loggers>
+</Configuration>

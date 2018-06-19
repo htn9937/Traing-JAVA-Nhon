@@ -2,36 +2,49 @@ package com.example.demo.model;
 
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.UUID;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
+
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "sales")
 public class Sales {
 
 	@Id
-	private int id;
+	@Column(name = "sales_id")
+	private UUID sales_id;
 	
-	@NotNull
-	@ManyToOne
-	@JoinColumn(name="location_id")
-	private Product location;
+	@JsonIgnore
+	@ManyToOne(fetch=FetchType.LAZY)
+	@JoinColumn(name="location_id" )
+	private Location location;
 	
-	@NotNull
-	@ManyToOne
+	@JsonIgnore
+	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="product_id")
 	private Product product;
 	
-	@NotNull
-	@ManyToOne
+
+	@JsonIgnore
+	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="time_id")
-	private Product time;
+	private Time time;
+
+	@Column(insertable=false, updatable=false)
+	private UUID product_id;
+	@Column(insertable=false, updatable=false)
+	private UUID location_id;
+	@Column(insertable=false, updatable=false)
+	private UUID time_id;
 	
 	@Column(name = "dollars")
 	private BigDecimal dollars;
@@ -42,19 +55,19 @@ public class Sales {
 	@Column(name = "modified_at")
     private Date modified_at;
 
-	public int getId() {
-		return id;
+	public UUID getId() {
+		return sales_id;
 	}
 
-	public void setId(int id) {
-		this.id = id;
+	public void setId(UUID id) {
+		this.sales_id = id;
 	}
 
-	public Product getLocation() {
+	public Location getLocation() {
 		return location;
 	}
 
-	public void setLocation(Product location) {
+	public void setLocation(Location location) {
 		this.location = location;
 	}
 
@@ -66,11 +79,11 @@ public class Sales {
 		this.product = product;
 	}
 
-	public Product getTime() {
+	public Time getTime() {
 		return time;
 	}
 
-	public void setTime(Product time) {
+	public void setTime(Time time) {
 		this.time = time;
 	}
 
@@ -97,5 +110,28 @@ public class Sales {
 	public void setModified_at(Date modified_at) {
 		this.modified_at = modified_at;
 	}
-	
+
+	public UUID getProduct_id() {
+		return product_id;
+	}
+
+	public void setProduct_id(UUID product_id) {
+		this.product_id = product_id;
+	}
+
+	public UUID getLocation_id() {
+		return location_id;
+	}
+
+	public void setLocation_id(UUID location_id) {
+		this.location_id = location_id;
+	}
+
+	public UUID getTime_id() {
+		return time_id;
+	}
+
+	public void setTime_id(UUID time_id) {
+		this.time_id = time_id;
+	}
 }

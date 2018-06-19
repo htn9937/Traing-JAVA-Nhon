@@ -19,7 +19,7 @@
             </column>
             <column name="item" type="int"/>
             <column name="class" type="varchar(250)"/>
-            <column name="inventory" type="varchar(250)"/>
+            <column name="investory" type="varchar(250)"/>
             <column name="create_at" type="datetime"/>
             <column name="modified_at" type="datetime"/>
         </createTable>

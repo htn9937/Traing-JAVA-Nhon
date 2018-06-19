@@ -8,5 +8,12 @@
         http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
         
 		<!-- <include file="db/changelog/db.changelog-0.0.1.xml" />-->
-		<include file="db/changelog/db.changelog-0.0.2.xml" />		
+	<!--	<include file="db/changelog/db.changelog-0.0.2.xml" />	-->	
+		<include file="db/changelog/db.changelog-0.0.3.xml" />		
+		<include file="db/changelog/db.changelog-0.0.4.xml" />		
+		
+		<!-- Create table for spring security -->
+		<include file="db/changelog/db.changelog-0.0.5.xml" />		
+			<!-- Add unique constraint for sales table -->
+		<include file="db/changelog/db.changelog-0.0.6.xml" />		
 </databaseChangeLog>

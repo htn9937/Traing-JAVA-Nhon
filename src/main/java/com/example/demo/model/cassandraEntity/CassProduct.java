@@ -1,34 +1,32 @@
-package com.example.demo.model;
+package com.example.demo.model.cassandraEntity;
 
 import java.util.UUID;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
 
 import org.joda.time.DateTime;
+import org.springframework.data.cassandra.core.mapping.Column;
+import org.springframework.data.cassandra.core.mapping.PrimaryKey;
+import org.springframework.data.cassandra.core.mapping.Table;
 
-@Entity
-@Table(name = "product")
-public class Product {
-    
-    @Id
-	@Column(name = "product_id")
+@Table("product")
+public class CassProduct {
+	
+	@PrimaryKey
+	@Column("product_id")
     private UUID product_id;
 
-	@Column(name = "item")
-    private int item;
-
-	@Column(name = "clazz")
+	@Column("class")
     private String clazz;
 	
-	@Column(name = "investory")
+	@Column("investory")
     private String investory;
     
-	@Column(name = "create_at")
+	@Column("item")
+    private int item;
+	
+	@Column("create_at")
     private DateTime create_at;
     
-	@Column(name = "modified_at")
+	@Column("modified_at")
     private DateTime modified_at;
 
 	public UUID getProduct_id() {
@@ -37,14 +35,6 @@ public class Product {
 
 	public void setProduct_id(UUID product_id) {
 		this.product_id = product_id;
-	}
-
-	public int getItem() {
-		return item;
-	}
-
-	public void setItem(int item) {
-		this.item = item;
 	}
 
 	public String getClazz() {
@@ -63,6 +53,14 @@ public class Product {
 		this.investory = investory;
 	}
 
+	public int getItem() {
+		return item;
+	}
+
+	public void setItem(int item) {
+		this.item = item;
+	}
+
 	public DateTime getCreate_at() {
 		return create_at;
 	}
@@ -78,5 +76,4 @@ public class Product {
 	public void setModified_at(DateTime modified_at) {
 		this.modified_at = modified_at;
 	}
-    
 }

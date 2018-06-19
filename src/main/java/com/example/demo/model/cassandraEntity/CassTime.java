@@ -1,37 +1,32 @@
-package com.example.demo.model;
-
+package com.example.demo.model.cassandraEntity;
 
 import java.util.UUID;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
-
 import org.joda.time.DateTime;
+import org.springframework.data.cassandra.core.mapping.Column;
+import org.springframework.data.cassandra.core.mapping.PrimaryKey;
+import org.springframework.data.cassandra.core.mapping.Table;
 
-
-@Entity
-@Table(name = "time")
-public class Time {
-
-    @Id
-	@Column(name = "time_id")
+@Table("time")
+public class CassTime {
+	
+	@PrimaryKey
+	@Column("time_id")
     private UUID time_id;
 
-	@Column(name = "month")
+	@Column("month")
     private int month;
 
-	@Column(name = "year")
+	@Column("year")
     private int year;
 	
-	@Column(name = "quater")
+	@Column("quater")
     private int quater;
     
-	@Column(name = "create_at")
+	@Column("create_at")
     private DateTime create_at;
     
-	@Column(name = "modified_at")
+	@Column("modified_at")
     private DateTime modified_at;
 
 	public UUID getTime_id() {
@@ -81,5 +76,4 @@ public class Time {
 	public void setModified_at(DateTime modified_at) {
 		this.modified_at = modified_at;
 	}
-    
 }

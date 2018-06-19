@@ -4,17 +4,13 @@ import java.util.List;
 import java.util.UUID;
 
 import com.example.demo.model.Location;
-import com.example.demo.model.cassLocation;
+import com.example.demo.model.cassandraEntity.CassLocation;
 
 public interface ILocationService {
 
-	List<Location> findAll();
-
-	String save();
-
 	List<Location> getAllLocations();
 
-	List<cassLocation> getcassLocations();
+	List<CassLocation> getcassLocations();
 
 	Location getLocationById(UUID id);
 

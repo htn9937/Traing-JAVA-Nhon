@@ -1,0 +1,77 @@
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd">
+
+        <changeSet id="table-for-security" author="nhon">
+        <createTable tableName="role">
+            <column name="role_id" type="uuid">
+                <constraints primaryKey="true" nullable="false" />
+            </column>
+            <column name="role_name" type="varchar(50)">
+                <constraints nullable="false" />
+            </column>
+        </createTable>
+        <createTable tableName="user">
+            <column name="user_id" type="uuid">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="user_name" type="varchar(36)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="password" type="varchar(128)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="enable" type="int">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <createTable tableName="user_role">
+            <column name="user_role_id" type="uuid">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="user_id" type="uuid">
+                <constraints nullable="false" />
+            </column>
+            <column name="role_id" type="uuid">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        
+        <createTable tableName="persistent_logins">
+            <column name="user_name" type="varchar(64)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="series" type="varchar(64)">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="token" type="varchar(64)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="last_used" type="TIMESTAMP WITH TIME ZONE">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+	    <addForeignKeyConstraint baseColumnNames="user_id"
+	                             baseTableName="user_role"
+	                             constraintName="fk_user_id"
+	                             referencedColumnNames="user_id"
+	                             referencedTableName="user"/>
+	    <addForeignKeyConstraint baseColumnNames="role_id"
+	                             baseTableName="user_role"
+	                             constraintName="fk_role_id"
+	                             referencedColumnNames="role_id"
+	                             referencedTableName="role"/>
+        <addUniqueConstraint
+            columnNames="role_name"
+            constraintName="uk_role"
+            tableName="role"/>
+        <addUniqueConstraint
+            columnNames="user_name"
+            constraintName="uk_user"
+            tableName="user"/>
+        <addUniqueConstraint
+            columnNames="user_id, role_id"
+            constraintName="uk_user_role"
+            tableName="user_role"/>
+    </changeSet>
+</databaseChangeLog>

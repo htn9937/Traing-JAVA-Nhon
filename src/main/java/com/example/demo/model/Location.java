@@ -1,12 +1,13 @@
 package com.example.demo.model;
 
-import java.util.Date;
+//import java.util.Date;
 import java.util.UUID;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.joda.time.DateTime;
 
 @Entity
 @Table(name = "location")
@@ -21,12 +22,12 @@ public class Location {
 
 	@Column(name = "country")
     private String country;
-    
+
 	@Column(name = "create_at")
-    private Date create_at;
+    private DateTime create_at;
     
 	@Column(name = "modified_at")
-    private Date modified_at;
+    private DateTime modified_at;
 	
 	public Location() {
 		
@@ -36,7 +37,7 @@ public class Location {
 		this.location_id=uuid;
 	}
 	
-	public Location(UUID uuid, String city, String country, Date create_at, Date modified_at) {
+	public Location(UUID uuid, String city, String country, DateTime create_at, DateTime modified_at) {
 		this.location_id =uuid;
 		this.city=city;
 		this.country=country;
@@ -76,19 +77,19 @@ public class Location {
 		this.country = country;
 	}
 
-	public Date getCreate_at() {
+	public DateTime getCreate_at() {
 		return create_at;
 	}
 
-	public void setCreate_at(Date create_at) {
+	public void setCreate_at(DateTime create_at) {
 		this.create_at = create_at;
 	}
 
-	public Date getModified_at() {
+	public DateTime getModified_at() {
 		return modified_at;
 	}
 
-	public void setModified_at(Date modified_at) {
+	public void setModified_at(DateTime modified_at) {
 		this.modified_at = modified_at;
 	}
 }
