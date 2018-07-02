@@ -5,11 +5,13 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.example.demo.DTO.LocationDTO;
+import com.example.demo.Entity.Location;
 import com.example.demo.Utils.LogUtil;
-import com.example.demo.model.Location;
 import com.example.demo.model.cassandraEntity.CassLocation;
 import com.example.demo.repo.LocationRepository;
 import com.example.demo.service.ILocationService;
@@ -43,6 +45,7 @@ public class LocationServiceImpl implements ILocationService{
 //	}
 
 //--------------------------------------------------------------------------
+	
 	@Override
 	public Location getLocationById(UUID id) {
 		LogUtil.Debug(this.getClass(), "getLocationById >>> Start");
@@ -50,6 +53,18 @@ public class LocationServiceImpl implements ILocationService{
 		LogUtil.Debug(this.getClass(), "getLocationById >>> End");
 		return obj;
 	}
+	
+	@Override
+	public LocationDTO getLocationByIdDTO(UUID id) {
+		LogUtil.Debug(this.getClass(), "getLocationById >>> Start");
+		Location obj = repo.findById(id).get();
+		ModelMapper modelMapper = new ModelMapper();
+		LocationDTO locationDto = modelMapper.map(obj, LocationDTO.class);
+		LogUtil.Debug(this.getClass(), "getLocationById >>> End");
+		return locationDto;
+	}
+	
+	
 	
 	@Override
 	public List<Location> getAllLocations(){

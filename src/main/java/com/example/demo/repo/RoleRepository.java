@@ -8,7 +8,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
-import com.example.demo.model.Role;
+import com.example.demo.Entity.Role;
 
 @Repository
 public interface RoleRepository extends JpaRepository<Role,UUID>{

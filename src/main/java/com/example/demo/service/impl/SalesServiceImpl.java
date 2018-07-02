@@ -7,8 +7,7 @@ import java.util.UUID;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-//import com.example.demo.model.Product;
-import com.example.demo.model.Sales;
+import com.example.demo.Entity.Sales;
 import com.example.demo.repo.SalesRepository;
 import com.example.demo.service.ISalesService;
 
@@ -34,15 +33,5 @@ public class SalesServiceImpl implements ISalesService{
 	public Sales test() {
 		return salesRepository.findOneWithSalesById(UUID.fromString("c156ee10-688c-11e8-b87a-81a2c9c40b81"));
 	}
-	
-//	@Override
-//	public List<Product> getAllProductInSales(){
-//		List<Sales> sales = (List<Sales>) salesRepository.findAll();
-//		List<Product> products = new ArrayList<Product>();
-//		for(Sales a : sales) {
-//			products.add(a.getProduct());
-//		}
-//		return products;
-//	}
 	
 }

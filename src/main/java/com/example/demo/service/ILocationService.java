@@ -3,7 +3,8 @@ package com.example.demo.service;
 import java.util.List;
 import java.util.UUID;
 
-import com.example.demo.model.Location;
+import com.example.demo.DTO.LocationDTO;
+import com.example.demo.Entity.Location;
 import com.example.demo.model.cassandraEntity.CassLocation;
 
 public interface ILocationService {
@@ -19,5 +20,7 @@ public interface ILocationService {
 	void updateLocation(Location location);
 
 	void deleteLocation(UUID id);
+
+	LocationDTO getLocationByIdDTO(UUID id);
 
 }

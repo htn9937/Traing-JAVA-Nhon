@@ -4,6 +4,7 @@ package com.example.demo.controller;
 import java.util.List;
 import java.util.UUID;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.http.HttpHeaders;
@@ -17,7 +18,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
-import com.example.demo.model.Location;
+import com.example.demo.DTO.LocationDTO;
+import com.example.demo.Entity.Location;
 import com.example.demo.service.ILocationService;
 
 @RestController(value= LocationController.BASE_URL)
@@ -32,12 +34,22 @@ public class LocationController {
 	ILocationService locationService;
 	
 //	@GetMapping("location/{id}")
+//	@RequestMapping(value = GET_LOCATION_BY_ID, method = RequestMethod.GET)
+//	public ResponseEntity<LocationDTO> getLocationById(@PathVariable("id") UUID id){
+//		com.example.demo.Utils.LogUtil.Debug(this.getClass(), "getLocationById >>> Start");
+//		ModelMapper modelMapper = new ModelMapper();
+//		Location location  = locationService.getLocationById(id);
+//		LocationDTO locationDto = modelMapper.map(location, LocationDTO.class);
+//		com.example.demo.Utils.LogUtil.Debug(this.getClass(), "getLocationById >>> End");
+//		return new ResponseEntity<LocationDTO>(locationDto, HttpStatus.OK);
+//	}
+//	
 	@RequestMapping(value = GET_LOCATION_BY_ID, method = RequestMethod.GET)
-	public ResponseEntity<Location> getLocationById(@PathVariable("id") UUID id){
+	public ResponseEntity<LocationDTO> getLocationByIdDTO(@PathVariable("id") UUID id){
 		com.example.demo.Utils.LogUtil.Debug(this.getClass(), "getLocationById >>> Start");
-		Location location  = locationService.getLocationById(id);
+		LocationDTO locationDto = locationService.getLocationByIdDTO(id);
 		com.example.demo.Utils.LogUtil.Debug(this.getClass(), "getLocationById >>> End");
-		return new ResponseEntity<Location>(location, HttpStatus.OK);
+		return new ResponseEntity<LocationDTO>(locationDto, HttpStatus.OK);
 	}
 	
 	@RequestMapping(value = GET_LOCATIONS, method = RequestMethod.GET)
